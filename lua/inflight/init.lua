@@ -94,7 +94,6 @@ end
 
 -- Setup function to init the plugin
 function M.setup()
-	print("InFlight Plugin Loaded")
 	setup_key_listener()
 	setup_text_changed_listener()
 end
