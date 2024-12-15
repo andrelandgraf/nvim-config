@@ -64,14 +64,14 @@ end
 
 -- Hook into keypress events
 local function setup_key_listener()
-	vim.on_key(function(char)
-		if char == vim.api.nvim_replace_termcodes("<Esc>", true, false, true) then
+	vim.on_key(function(char, typed)
+		if typed == vim.api.nvim_replace_termcodes("<Esc>", true, false, true) then
 			reset_sequence()
 			return
 		end
 		local mode = vim.fn.mode()
-		if mode ~= "i" then
-			update_sequence(char)
+		if mode ~= "i" and typed ~= "" then
+			update_sequence(typed)
 			return
 		end
 	end)
@@ -79,7 +79,7 @@ end
 
 -- Hook into text changes to detect command execution
 local function setup_text_changed_listener()
-	vim.api.nvim_create_autocmd({ "TextChanged", "TextChangedI", "CursorMoved", "ModeChanged" }, {
+	vim.api.nvim_create_autocmd({ "TextChanged", "CursorMoved", "ModeChanged" }, {
 		callback = function()
 			reset_sequence()
 		end,
