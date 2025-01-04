@@ -1,5 +1,3 @@
-local M = {}
-
 -- Floating window variables
 local win_id = nil
 local buf_id = nil
@@ -86,16 +84,15 @@ local function setup_text_changed_listener()
 	})
 end
 
+return {
+	-- Test functions for debugging
+	show_inflight = function()
+		show_panel("InFlight panel")
+	end,
+	-- Setup function to init the plugin
+	setup = function()
+		setup_key_listener()
+		setup_text_changed_listener()
+	end
+}
 
--- Test functions for debugging
-function M.show_inflight()
-	show_panel("InFlight panel")
-end
-
--- Setup function to init the plugin
-function M.setup()
-	setup_key_listener()
-	setup_text_changed_listener()
-end
-
-return M

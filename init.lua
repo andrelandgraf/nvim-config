@@ -1,10 +1,18 @@
 -- Custom key maps
 -- Source/execute current lua file:
 vim.keymap.set("n", "<space><space>x", "<cmd>source %<CR>")
+vim.keymap.set("n", "<space>x", ":.lua<CR>")
+vim.keymap.set("v", "<space>x", ":lua<CR>")
 
 -- Clear highlights on search when pressing <Esc> in normal mode
 --  See `:help hlsearch`
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
+
+-- Set <space> as the leader key
+-- See `:help mapleader`
+--  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
+vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
 
 -- Nvim configuration options
 -- Show current command:
@@ -15,6 +23,10 @@ vim.g.have_nerd_font = true
 
 -- Show relative line numbers
 vim.opt.number = true
+vim.opt.relativenumber = true
+
+-- Identation
+vim.opt.shiftwidth = 2
 
 -- Sync clipboard between OS and Neovim.
 --  Schedule the setting after `UiEnter` because it can increase startup-time.
@@ -35,3 +47,8 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
+-- Load lazy.vim (https://lazy.folke.io/installation)
+require("config.lazy")
+
+-- Load local plugins
+require("local_plugins/inflight").setup()
