@@ -6,7 +6,11 @@ return {
     { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
   },
   config = function()
-    require('telescope').setup {}
+    require('telescope').setup {
+      extensions = {
+        fzf = {}
+      }
+    }
     require('telescope').load_extension('fzf')
 
     local telescope = require('telescope.builtin')
@@ -14,6 +18,8 @@ return {
     vim.keymap.set("n", "<space>fd", telescope.find_files)
     -- find lsp references (fr) keymap
     vim.keymap.set("n", "<space>fr", telescope.lsp_references)
+    -- fuzzy-find help content (fh)
+    vim.keymap.set("n", "<space>fh", telescope.help_tags)
     -- edit neovin (en) keymap - searches for files in neovim config folderk
     vim.keymap.set("n", "<space>en", function()
       telescope.find_files {

@@ -28,6 +28,12 @@ vim.opt.relativenumber = true
 -- Identation
 vim.opt.shiftwidth = 2
 
+-- Set the 'scrolloff' option to a large value to effectively keep crusor in center of screen when scrolling around
+vim.o.scrolloff = 999
+
+-- Enable mouse support
+vim.o.mouse = 'a'
+
 -- Sync clipboard between OS and Neovim.
 --  Schedule the setting after `UiEnter` because it can increase startup-time.
 --  Remove this option if you want your OS clipboard to remain independent.
