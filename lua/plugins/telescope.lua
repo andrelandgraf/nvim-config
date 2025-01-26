@@ -1,3 +1,5 @@
+-- Note: To hide node_modules (without preventing lsp results),
+-- install fd and ripgrep because both will not show gitignored files by default
 return {
   'nvim-telescope/telescope.nvim',
   tag = '0.1.8',
@@ -7,6 +9,7 @@ return {
   },
   config = function()
     require('telescope').setup {
+      layout_strategy = 'flex',
       extensions = {
         fzf = {}
       }
