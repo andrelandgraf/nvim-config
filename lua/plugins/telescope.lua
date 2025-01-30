@@ -23,6 +23,10 @@ return {
     vim.keymap.set("n", "<space>fr", telescope.lsp_references)
     -- fuzzy-find help content (fh)
     vim.keymap.set("n", "<space>fh", telescope.help_tags)
+    -- fuzzy-find text under crusor
+    vim.keymap.set("n", "<space>fc", telescope.grep_string)
+    -- fuzzy-find text as typed
+    vim.keymap.set("n", "<space>fs", telescope.live_grep)
     -- edit neovin (en) keymap - searches for files in neovim config folderk
     vim.keymap.set("n", "<space>en", function()
       telescope.find_files {
